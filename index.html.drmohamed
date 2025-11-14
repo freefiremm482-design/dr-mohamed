@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Mohamed - خدمات البرمجة</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+    /* خلفية متحركة */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(-45deg, #1e3c72, #2a5298, #6dd5ed, #2193b0);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        scroll-behavior: smooth;
+    }
+    @keyframes gradientBG {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+    .section { padding: 60px 0; }
+    .whatsapp-btn { position: fixed; bottom: 20px; left: 20px; z-index: 999; font-size: 18px; }
+    #success-msg { display: none; margin-bottom: 20px; }
+    .card { background-color: rgba(255,255,255,0.9); }
+</style>
+</head>
+<body>
+
+<!-- شريط التنقل -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-75">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Dr Mohamed</a>
+    <div>
+      <a class="btn btn-light me-2" href="#services">الخدمات</a>
+      <a class="btn btn-warning" href="#booking">احجز الآن</a>
+    </div>
+  </div>
+</nav>
+
+<!-- الصفحة الرئيسية -->
+<header class="text-center text-white p-5 section">
+    <h1 class="fw-bold">مرحبًا بك في موقع Dr Mohamed</h1>
+    <p class="lead">خدمات البرمجة – تصميم المواقع – حلول تقنية متقدمة.</p>
+    <a href="#booking" class="btn btn-primary btn-lg mt-3">احجز خدمتك الآن</a>
+</header>
+
+<!-- الخدمات -->
+<section id="services" class="container section">
+    <h2 class="text-center mb-5 fw-bold text-white">الخدمات المتاحة</h2>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card shadow p-3 text-center">
+                <h4>موقع ويب كامل</h4>
+                <p>برمجة وتصميم موقع احترافي كامل.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow p-3 text-center">
+                <h4>Frontend Design</h4>
+                <p>تصميم واجهات باستخدام HTML, CSS, JS.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card shadow p-3 text-center">
+                <h4>Backend Development</h4>
+                <p>أنظمة تسجيل دخول/قواعد بيانات/لوحات تحكم.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- رسالة نجاح -->
+<div id="success-msg" class="container">
+    <div class="alert alert-success text-center fw-bold">
+        ✔ تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.
+    </div>
+</div>
+
+<!-- الحجز -->
+<section id="booking" class="container section">
+    <h2 class="text-center mb-4 fw-bold text-white">حجز خدمة البرمجة</h2>
+
+    <form id="bookingForm" class="shadow p-4 rounded" style="background-color: rgba(255,255,255,0.9);">
+
+        <label class="fw-bold">اسم العميل</label>
+        <input type="text" name="name" class="form-control mb-3" required>
+
+        <label class="fw-bold">البريد الإلكتروني</label>
+        <input type="email" name="email" class="form-control mb-3" required>
+
+        <label class="fw-bold">الخدمة المطلوبة</label>
+        <select name="service" class="form-select mb-3" required>
+            <option>موقع ويب كامل</option>
+            <option>Frontend</option>
+            <option>Backend</option>
+            <option>حل مشاكل برمجية</option>
+        </select>
+
+        <label class="fw-bold">تفاصيل إضافية</label>
+        <textarea name="details" class="form-control mb-3" rows="4"></textarea>
+
+        <button type="submit" class="btn btn-primary w-100 btn-lg">إرسال الطلب</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center p-3">
+    © 2025 - Dr Mohamed  
+</footer>
+
+<!-- زر واتساب -->
+<a href="https://wa.me/20106353536" class="btn btn-success whatsapp-btn">
+    تواصل واتساب
+</a>
+
+<!-- سكريبت لإرسال النموذج -->
+<script>
+const form = document.getElementById('bookingForm');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    fetch('https://formsubmit.co/ajax/mohamedabdulnabi@gmail.com', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => response.ok ? showSuccess() : alert('حدث خطأ! حاول مرة أخرى'))
+    .catch(error => alert('حدث خطأ! حاول مرة أخرى'));
+
+    function showSuccess() {
+        document.getElementById('success-msg').style.display = 'block';
+        form.reset();
+        form.scrollIntoView({behavior: 'smooth'});
+    }
+});
+</script>
+
+</body>
+</html>
+https://username.github.io/my-html-site/
